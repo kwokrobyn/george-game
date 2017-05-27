@@ -9,8 +9,8 @@ var Block = function(settings) {
     }
 
 
-        var word = setWord();
-        console.log(word);
+    this.word = setWord();
+    console.log(this.word);
 
 
 

@@ -1,6 +1,9 @@
-var Keyboard = function(interactions) {
+/* Stores an array triggered by keydown events of letters typed by user */
+var Keyboard = function(interactions, activeBlocks) {
     var current = [];
+    var matchingBlocks = [];
 
+    // add letter to current array
     function addToCurrent(interations) {
         if (interactions.alphabet !== "") {
             current.push(interactions.alphabet);
@@ -9,6 +12,7 @@ var Keyboard = function(interactions) {
         }
     }
 
+    // delete last letter from current array
     function deleteFromCurrent(interactions) {
         if (interactions.backspace) {
             current.pop();
@@ -17,6 +21,7 @@ var Keyboard = function(interactions) {
         }
     }
 
+    // clear entire array
     function quickDelete(interactions) {
         if (interactions.quickspace) {
             current = [];
@@ -25,9 +30,35 @@ var Keyboard = function(interactions) {
         }
     }
 
+    /* Store an array of matchingWords, which are words whose letters up to
+    current.length match the letters typed into current (Graphics needed) */
+    function matcher() {
+        matchingBlocks = activeBlocks.filter(function(elem) {
+            return elem.word.slice(0, current.length).toLowerCase() == current.join('').toLowerCase();
+        });
+        console.log(matchingBlocks);
+    }
+
+    function submitWord() {
+        if (interactions.enter) {
+            if (matchingBlocks.length != 0) {
+                var word = current.join('').toUpperCase();
+                for (var i=0; i<activeBlocks.length;i++) {
+                    if (activeBlocks[i].word.toUpperCase() == word) {
+                        activeBlocks.splice(i, 1);;
+                    }
+                }
+            }
+            current = [];
+            interactions.enter = false;
+        }
+    }
+
     this.render = function(interactions) {
         addToCurrent(interactions);
         deleteFromCurrent(interactions);
         quickDelete(interactions);
+        matcher();
+        submitWord();
     }
 }

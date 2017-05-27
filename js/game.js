@@ -12,37 +12,14 @@ var Game = function() {
 
     /* Game Assets */
     var assets = [];
-    var block = new Block(settings);
-    var keyboard = new Keyboard(interactions);
-    assets[0] = block;
-    assets[1] = keyboard;
+    var activeBlocks = [];
+    var keyboard = new Keyboard(interactions, activeBlocks);
+    assets[0] = keyboard;
     var frame = 0;
-
-
-    // /* Render Function (called 60/s) */
-    function render() {
-        for (var i=0; i < assets.length; i++) {
-        assets[1].render(interactions);
-        }
-    }
-
-    /* Animation */
-    window.requestAnimFrame = (function(){
-      return  window.requestAnimationFrame       ||
-              window.webkitRequestAnimationFrame ||
-              window.mozRequestAnimationFrame    ||
-              function(callback){
-                window.setTimeout(callback, 1000 / 60);
-              };
-            })();
-
-    (function loop() {
-        requestAnimFrame(loop);
-        render();
-    })();
 
     /* Add Event Listeners */
     function setEvents() {
+        // if command and delete pressed simultaneously, clear entire keyboard
         var multipleKeyTracker = [0, 0];
         document.addEventListener('keydown', function(event) {
             if (event.keyCode >= 65 && event.keyCode <= 90) {
@@ -61,10 +38,12 @@ var Game = function() {
                 }
             }
 
+            // enter key
             if (event.keyCode == 32) {
                 interactions.enter = true;
             }
 
+            // command key
             if (event.keyCode == 91) {
                 multipleKeyTracker[0] = 1;
             }
@@ -78,8 +57,47 @@ var Game = function() {
         });
     }
 
+    /* Set blocks to spawn at a random interval of 0.5-2.5 seconds,
+    blocks are added to activeBlock array, which has a maximum cap
+    of 10 blocks (10 blocks on screen max) */
+    function spawnBlocks() {
+        var randomInterval = Math.random() * ((2000 - 1000) + 1000);
+
+        if (activeBlocks.length < 3) {
+            activeBlocks.push(new Block(settings));
+        }
+        else {
+            // for debugging, to change
+            return;
+        }
+        setTimeout(spawnBlocks, randomInterval);
+    };
+
+    /* Render Function (called 60/s) */
+    function render() {
+        for (var i=0; i < assets.length; i++) {
+        assets[0].render(interactions);
+        }
+    }
+
+    /* Animation */
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              function(callback){
+                window.setTimeout(callback, 1000 / 60);
+              };
+            })();
+
+    (function loop() {
+        requestAnimFrame(loop);
+        render();
+        frame++;
+    })();
 
     setEvents();
+    spawnBlocks();
 
 }
 
