@@ -9,7 +9,17 @@ var Keyboard = function(interactions) {
         }
     }
 
+    function deleteFromCurrent(interactions) {
+        if (interactions.backspace) {
+            current.pop();
+            interactions.backspace = false;
+            console.log(current);
+        }
+    }
+
+
     this.render = function(interactions) {
         addToCurrent(interactions);
+        deleteFromCurrent(interactions);
     }
 }

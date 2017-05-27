@@ -47,6 +47,15 @@ var Game = function() {
                 interactions.alphabet = String.fromCharCode(event.keyCode);
                 console.log(interactions.alphabet);
             }
+
+            else if (event.keyCode == 8) {
+                interactions.backspace = true;
+            }
+
+            else if (event.keyCode === 32) {
+                interactions.enter = true;
+            }
+
         });
     }
 
