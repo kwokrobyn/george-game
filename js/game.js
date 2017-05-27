@@ -8,6 +8,7 @@ var Game = function() {
     interactions.alphabet = "";
     interactions.enter = false;
     interactions.backspace = false;
+    interactions.quickspace = false;
 
     /* Game Assets */
     var assets = [];
@@ -42,20 +43,38 @@ var Game = function() {
 
     /* Add Event Listeners */
     function setEvents() {
-        document.addEventListener('keyup', function(event) {
+        var multipleKeyTracker = [0, 0];
+        document.addEventListener('keydown', function(event) {
             if (event.keyCode >= 65 && event.keyCode <= 90) {
                 interactions.alphabet = String.fromCharCode(event.keyCode);
                 console.log(interactions.alphabet);
             }
 
-            else if (event.keyCode == 8) {
-                interactions.backspace = true;
+            if (event.keyCode == 8) {
+                multipleKeyTracker[1] = 1;
+                if (multipleKeyTracker[1] == 1 && multipleKeyTracker[0] == 1) {
+                    interactions.quickspace = true;
+                    multipleKeyTracker = [0,0];
+                }
+                else {
+                    interactions.backspace = true;
+                }
             }
 
-            else if (event.keyCode === 32) {
+            if (event.keyCode == 32) {
                 interactions.enter = true;
             }
 
+            if (event.keyCode == 91) {
+                multipleKeyTracker[0] = 1;
+            }
+
+        });
+
+        document.addEventListener('keyup', function(event) {
+            if (event.keyCode == 91) {
+                multipleKeyTracker[0] = 0;
+            }
         });
     }
 

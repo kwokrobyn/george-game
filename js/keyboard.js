@@ -17,9 +17,17 @@ var Keyboard = function(interactions) {
         }
     }
 
+    function quickDelete(interactions) {
+        if (interactions.quickspace) {
+            current = [];
+            interactions.quickspace = false;
+            console.log(current);
+        }
+    }
 
     this.render = function(interactions) {
         addToCurrent(interactions);
         deleteFromCurrent(interactions);
+        quickDelete(interactions);
     }
 }
