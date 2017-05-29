@@ -1,7 +1,7 @@
 var Game = function() {
     /* Game Settings */
     var settings = {};
-    settings.level = 5;
+    settings.level = 4;
 
     /* Interactions */
     var interactions = {};
@@ -33,27 +33,18 @@ var Game = function() {
                     interactions.quickspace = true;
                     multipleKeyTracker = [0,0];
                 }
-                else {
-                    interactions.backspace = true;
-                }
+                else interactions.backspace = true;
             }
 
             // enter key
-            if (event.keyCode == 32) {
-                interactions.enter = true;
-            }
+            if (event.keyCode == 32) interactions.enter = true;
 
             // command key
-            if (event.keyCode == 91) {
-                multipleKeyTracker[0] = 1;
-            }
-
+            if (event.keyCode == 91) multipleKeyTracker[0] = 1;
         });
 
         document.addEventListener('keyup', function(event) {
-            if (event.keyCode == 91) {
-                multipleKeyTracker[0] = 0;
-            }
+            if (event.keyCode == 91) multipleKeyTracker[0] = 0;2
         });
     }
 
@@ -61,14 +52,10 @@ var Game = function() {
     blocks are added to activeBlock array, which has a maximum cap
     of 10 blocks (10 blocks on screen max) */
     function spawnBlocks() {
-        var randomInterval = Math.random() * ((2000 - 1000) + 1000);
+        var randomInterval = Math.random() * ((2500 - 1000) + 1000);
 
-        if (activeBlocks.length < 3) {
-            activeBlocks.push(new Block(settings));
-        }
-        else {
-            // for debugging, to change
-            return;
+        if (activeBlocks.length < 5) {
+            activeBlocks.push(new Block(settings, activeBlocks));
         }
         setTimeout(spawnBlocks, randomInterval);
     };

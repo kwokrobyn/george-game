@@ -39,6 +39,8 @@ var Keyboard = function(interactions, activeBlocks) {
         console.log(matchingBlocks);
     }
 
+    // on spacebar, if current matches an active word, delete from activeBlocks
+    // either way, keyboard is cleared
     function submitWord() {
         if (interactions.enter) {
             if (matchingBlocks.length != 0) {
@@ -54,11 +56,25 @@ var Keyboard = function(interactions, activeBlocks) {
         }
     }
 
+    // simple testing display for block spawning and submitWords 
+    function display() {
+        var wordDisplay = document.querySelector('.words');
+        var activeWords = [];
+        for (var i=0;i<activeBlocks.length;i++) {
+            activeWords.push(activeBlocks[i].word);
+        }
+        wordDisplay.innerHTML = activeWords.join(', ');
+
+        var keyBoardDisplay = document.querySelector('.current');
+        keyBoardDisplay.innerHTML = current.join(', ');
+    }
+
     this.render = function(interactions) {
         addToCurrent(interactions);
         deleteFromCurrent(interactions);
         quickDelete(interactions);
         matcher();
         submitWord();
+        display();
     }
 }
