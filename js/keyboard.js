@@ -47,7 +47,8 @@ var Keyboard = function(interactions, activeBlocks) {
                 var word = current.join('').toUpperCase();
                 for (var i=0; i<activeBlocks.length;i++) {
                     if (activeBlocks[i].word.toUpperCase() == word) {
-                        activeBlocks.splice(i, 1);;
+                        activeBlocks[i].deleteBlock();
+                        activeBlocks.splice(i, 1);
                     }
                 }
             }
@@ -56,7 +57,7 @@ var Keyboard = function(interactions, activeBlocks) {
         }
     }
 
-    // simple testing display for block spawning and submitWords 
+    // simple testing display for block spawning and submitWords
     function display() {
         var wordDisplay = document.querySelector('.words');
         var activeWords = [];

@@ -2,6 +2,7 @@ var Game = function() {
     /* Game Settings */
     var settings = {};
     settings.level = 4;
+    settings.maxActiveBlocks = 5;
 
     /* Interactions */
     var interactions = {};
@@ -12,7 +13,8 @@ var Game = function() {
 
     /* Game Assets */
     var assets = [];
-    var activeBlocks = [];
+    activeBlocks = [];
+    var matchingBlocks = [];
     var keyboard = new Keyboard(interactions, activeBlocks);
     assets[0] = keyboard;
     var frame = 0;
@@ -48,26 +50,30 @@ var Game = function() {
         });
     }
 
-    /* Set blocks to spawn at a random interval of 0.5-2.5 seconds,
+    /* Set blocks to spawn at a random interval of 2-3 seconds,
     blocks are added to activeBlock array, which has a maximum cap
     of 10 blocks (10 blocks on screen max) */
     function spawnBlocks() {
-        var randomInterval = Math.random() * ((2500 - 1000) + 1000);
+        var randomInterval = Math.random() * ((3000 - 2000) + 2000);
 
-        if (activeBlocks.length < 5) {
-            activeBlocks.push(new Block(settings, activeBlocks));
+        if (activeBlocks.length < settings.maxActiveBlocks) {
+            activeBlocks.push(new Block(settings));
         }
         setTimeout(spawnBlocks, randomInterval);
     };
 
     /* Render Function (called 60/s) */
-    function render() {
+    this.render = function() {
         for (var i=0; i < assets.length; i++) {
         assets[0].render(interactions);
+        }
+        for (var i=0; i < activeBlocks.length; i++) {
+            activeBlocks[i].render();
         }
     }
 
     /* Animation */
+    var self = this;
     window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       ||
               window.webkitRequestAnimationFrame ||
@@ -79,7 +85,7 @@ var Game = function() {
 
     (function loop() {
         requestAnimFrame(loop);
-        render();
+        self.render();
         frame++;
     })();
 
