@@ -2,7 +2,7 @@ var Game = function() {
     /* Game Settings */
     var settings = {};
     settings.level = 4;
-    settings.maxActiveBlocks = 5;
+    settings.maxActiveBlocks = 7;
 
     /* Interactions */
     var interactions = {};
@@ -13,10 +13,12 @@ var Game = function() {
 
     /* Game Assets */
     var assets = [];
-    activeBlocks = [];
+    var activeBlocks = [];
     var matchingBlocks = [];
-    var keyboard = new Keyboard(interactions, activeBlocks);
+    var tracker = new Tracker();
+    var keyboard = new Keyboard(interactions, tracker);
     assets[0] = keyboard;
+    assets[1] = tracker;
     var frame = 0;
 
     /* Add Event Listeners */
@@ -56,8 +58,8 @@ var Game = function() {
     function spawnBlocks() {
         var randomInterval = Math.random() * ((3000 - 2000) + 2000);
 
-        if (activeBlocks.length < settings.maxActiveBlocks) {
-            activeBlocks.push(new Block(settings));
+        if (tracker.activeBlocks.length < settings.maxActiveBlocks) {
+            tracker.addToActive(new Block(settings, tracker));
         }
         setTimeout(spawnBlocks, randomInterval);
     };
@@ -65,10 +67,10 @@ var Game = function() {
     /* Render Function (called 60/s) */
     this.render = function() {
         for (var i=0; i < assets.length; i++) {
-        assets[0].render(interactions);
+        assets[i].render(interactions);
         }
-        for (var i=0; i < activeBlocks.length; i++) {
-            activeBlocks[i].render();
+        for (var i=0; i < tracker.activeBlocks.length; i++) {
+            tracker.activeBlocks[i].render();
         }
     }
 
