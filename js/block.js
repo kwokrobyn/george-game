@@ -8,8 +8,9 @@ var Block = function(settings, tracker) {
 
     function setWord() {
         var listOfWords = getListOfWords();
+        var avoidWords = tracker.getActiveWords();
         var wordsOfLength = listOfWords.filter(function(s) {
-            return (s.length === settings.level);
+            return (s.length === settings.level && avoidWords.indexOf(s) == -1);
         });
         return wordsOfLength[Math.floor(Math.random() * wordsOfLength.length)];
     }
@@ -54,11 +55,12 @@ var Block = function(settings, tracker) {
 
     function death() {
         var block = document.querySelector('.'+self.word);
-        if (block.style.top == "520px") {
+        if (parseInt(block.style.top) >= 520) {
             self.deleteBlock();
 
             var blockIndex = getIndex();
             tracker.activeBlocks.splice(blockIndex, 1);
+            tracker.health -= 1;
         }
     }
 

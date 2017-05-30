@@ -6,6 +6,23 @@ html {
   box-sizing: inherit;
 }
 
+#health {
+    width: 40px;
+    height:200px;
+    float: left;
+    position: absolute;
+    left: -40px;
+}
+
+.heart {
+    display: inline-block;
+    width:40px;
+    margin-right: 5px;
+    height: 40px;
+    background-image: url("../images/heart.png");
+    background-size: contain;
+}
+
 #game-container {
     position: absolute;
     margin-left: -288px;
@@ -14,7 +31,7 @@ html {
 
 #title-card {
     background-color: red;
-    height: 120px;
+    height: 100px;
     visibility: hidden;
 }
 
@@ -34,6 +51,7 @@ html {
     width: 570px;
     border: 3px solid black;
     position: relative;
+
 }
 
 .block {
@@ -43,7 +61,6 @@ html {
     background-size: contain;
     height: 50px;
     width: 95px;
-
     text-align: left;
     line-height: 50px;
     font-size: 20px;
