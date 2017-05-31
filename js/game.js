@@ -22,6 +22,15 @@
     assets[1] = tracker;
     var frame = 0;
 
+    function setDisplay() {
+        var container = document.querySelector('#game-container');
+        container.style.display = 'block';
+
+        // pause button is outside container
+        var pause = document.querySelector('#pause');
+        pause.style.display = 'block';
+    }
+
     /* Add Event Listeners */
     function setEvents() {
         // if command and delete pressed simultaneously, clear entire keyboard
@@ -148,9 +157,8 @@
         cancelRequestAnimFrame(request);
     }
 
+    setDisplay();
     setEvents();
     spawnBlocks();
 
 }
-
-var g = new Game();

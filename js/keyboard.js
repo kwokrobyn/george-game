@@ -88,15 +88,15 @@ var Keyboard = function(interactions, tracker, settings) {
 
     // simple testing display for block spawning and submitWords
     function display() {
-        var wordDisplay = document.querySelector('.words');
-        var activeWords = [];
-        for (var i=0;i<tracker.activeBlocks.length;i++) {
-            activeWords.push(tracker.activeBlocks[i].word);
-        }
-        wordDisplay.innerHTML = activeWords.join(', ');
+        // var wordDisplay = document.querySelector('.words');
+        // var activeWords = [];
+        // for (var i=0;i<tracker.activeBlocks.length;i++) {
+        //     activeWords.push(tracker.activeBlocks[i].word);
+        // }
+        // wordDisplay.innerHTML = activeWords.join(', ');
 
         var keyBoardDisplay = document.querySelector('.current');
-        keyBoardDisplay.innerHTML = current.join(', ');
+        keyBoardDisplay.innerHTML = current.join(' ');
     }
 
     this.render = function(interactions) {

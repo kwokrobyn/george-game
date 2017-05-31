@@ -5,16 +5,24 @@
         <title>George The Game</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <link href="https://fonts.googleapis.com/css?family=Inconsolata|VT323" rel="stylesheet">
+        <link rel="stylesheet" href="css/animations.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div id="start-container">
+            <div id="george-profile">
+                <div class="george-img animated bounceInLeft"></div>
+                <div class="george-name">
+                    <div class="george animated bounceInRight">George</div>
+                    <div class="the-game animated fadeInUp">The Game</div>
+                </div>
+                <div class="start-button animated bounceIn"></div>
+            </div>
+        </div>
+
         <div id="pause"></div>
         <div id="game-container">
             <div id="title-card">
-                <div id="george-profile"></div>
-                <div id="george-title">
-                    George
-                </div>
             </div>
             <div id="health">
             </div>
@@ -36,6 +44,7 @@
         <script type="text/javascript" src="js/block.js"></script>
         <script type="text/javascript" src="js/tracker.js"></script>
         <script type="text/javascript" src="js/game.js"></script>
+        <script type="text/javascript" src="js/start.js"></script>
 
     </body>
 </html>

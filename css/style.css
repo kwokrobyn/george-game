@@ -7,7 +7,81 @@ html {
 }
 
 body {
-    background-color: #3D9970;
+}
+
+.current {
+    font-size: 60px;
+    width: 100%;
+    text-align: center;
+}
+
+#start-container {
+    margin: 0 auto;
+    height: 700px;
+    width: 50%;
+    position: relative;
+    display: block;
+}
+
+#george-profile {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    height: 200px;
+}
+
+.george-img {
+    width: 180px;
+    height: 200px;
+    background-image: url("../images/george.png");
+    background-size: contain;
+    display: inline-block;
+}
+
+.george-name {
+    top: 0;
+    position: absolute;
+    display: inline-block;
+    height: 200px;
+}
+
+.george-name .george {
+    font-size: 100px;
+    letter-spacing: 3px;
+    -webkit-animation-delay: 0.5s;
+    color: #3D9970;
+}
+
+.george-name .the-game {
+    font-size: 50px;
+    letter-spacing: 3px;
+    position: absolute;
+    bottom: 0;
+    -webkit-animation-delay: 1s;
+}
+
+.start-button {
+    display: inline-block;
+    background-image: url("../images/start.png");
+    background-size: contain;
+    height: 100px;
+    width: 55px;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    -webkit-animation-delay: 1.5s;
+}
+
+.active-start {
+    display: inline-block;
+    background-image: url("../images/start.png");
+    background-size: contain;
+    height: 100px;
+    width: 55px;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    -webkit-animation-delay: 0s;
 }
 
 #pause {
@@ -17,6 +91,9 @@ body {
     background-size: cover;
     display: inline-block;
     float: right;
+    position: relative;
+    z-index: 3;
+    display: none;
 }
 
 #pause-screen {
@@ -37,6 +114,7 @@ body {
     top: 80px;
     left: 400px;
     font-size: 20px;
+    z-index: 3;
 }
 
 #store-img {
@@ -51,7 +129,7 @@ body {
 .store-block {
     width: 6.9px;
     display: inline-block;
-    height: 20px;
+    height: 17px;
     background-color: #3D9970;
 }
 
@@ -85,23 +163,14 @@ body {
     position: absolute;
     margin-left: -288px;
     left: 50%;
+    display: none;
 }
 
 #title-card {
-    background-color: red;
+    background-color: white;
     height: 100px;
-    visibility: hidden;
-}
-
-#george-title {
-    font-size: 100px;
-    letter-spacing: 10px;
-    line-height: 110px;
-    height: 100%;
-    width: 75%;
-    float: right;
-    border: 1px solid black;
-    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 #game-board {
@@ -110,7 +179,6 @@ body {
     border: 3px solid black;
     position: relative;
     background-color: white;
-
 }
 
 .block {
