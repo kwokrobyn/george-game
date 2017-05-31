@@ -6,12 +6,70 @@ html {
   box-sizing: inherit;
 }
 
+body {
+    background-color: #3D9970;
+}
+
+#pause {
+    width: 50px;
+    height: 50px;
+    background-image: url("../images/pause.png");
+    background-size: cover;
+    display: inline-block;
+    float: right;
+}
+
+#pause-screen {
+    width: 570px;
+    height: 570px;
+}
+
 #health {
     width: 40px;
     height:200px;
     float: left;
     position: absolute;
     left: -40px;
+}
+
+#stores {
+    position: absolute;
+    top: 80px;
+    left: 400px;
+    font-size: 20px;
+}
+
+#store-img {
+    width: 22px;
+    height: 20px;
+    background-image: url("../images/store.png");
+    background-size: cover;
+    display: inline-block;
+    float: left;
+}
+
+.store-block {
+    width: 6.9px;
+    display: inline-block;
+    height: 20px;
+    background-color: #3D9970;
+}
+
+#store-bar {
+    width: 138px;
+    margin-left: 10px;
+    height: 20px;
+    border: 3px solid black;
+    border-bottom: 0;
+    display: inline-block;
+    float: right;
+    background-color: white;
+}
+
+.store {
+    width:40px;
+    height:40px;
+    display: inline-block;
 }
 
 .heart {
@@ -51,6 +109,7 @@ html {
     width: 570px;
     border: 3px solid black;
     position: relative;
+    background-color: white;
 
 }
 
@@ -68,4 +127,13 @@ html {
 
 .block span {
     margin-left: 32px;
+}
+
+.block span.r {
+    margin: auto;
+}
+
+.block span.highlight {
+    margin-left: 32px;
+    color: #3D9970;
 }

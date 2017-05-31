@@ -1,7 +1,8 @@
 var Block = function(settings, tracker) {
 
     var self = this;
-    this.speed = 1;
+    // randomised speed between 0.5 and 1.7
+    this.speed = Math.random() * (1.2-0.5) + 0.5;
     this.word = setWord();
     displayBlock(this.word);
 
@@ -16,7 +17,6 @@ var Block = function(settings, tracker) {
     }
 
     function displayBlock(word) {
-
         var blockContent = '<div class="block '+word+'"><span>'+word+'</span></div>';
         var gameBoard = document.querySelector('#game-board');
         gameBoard.innerHTML += blockContent;
@@ -34,7 +34,7 @@ var Block = function(settings, tracker) {
     function gravity(word) {
         var block = document.querySelectorAll('.'+word);
         for (var i=0;i<block.length;i++) {
-            block[i].style.top = parseInt(block[i].style.top)+self.speed+'px';
+            block[i].style.top = parseFloat(block[i].style.top)+self.speed+'px';
         }
     }
 
@@ -55,7 +55,7 @@ var Block = function(settings, tracker) {
 
     function death() {
         var block = document.querySelector('.'+self.word);
-        if (parseInt(block.style.top) >= 520) {
+        if (parseFloat(block.style.top) >= 520) {
             self.deleteBlock();
 
             var blockIndex = getIndex();

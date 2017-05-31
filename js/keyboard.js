@@ -1,5 +1,5 @@
 /* Stores an array triggered by keydown events of letters typed by user */
-var Keyboard = function(interactions, tracker) {
+var Keyboard = function(interactions, tracker, settings) {
     var current = [];
 
     // add letter to current array
@@ -35,7 +35,25 @@ var Keyboard = function(interactions, tracker) {
         tracker.matchingBlocks = tracker.activeBlocks.filter(function(elem) {
             return elem.word.slice(0, current.length).toLowerCase() == current.join('').toLowerCase();
         });
-        if (tracker.matchingBlocks.length != 0) tracker.lastMatches = tracker.matchingBlocks;
+        if (tracker.matchingBlocks.length != 0 && tracker.matchingBlocks.length != tracker.activeBlocks.length) {
+            tracker.lastMatches = tracker.matchingBlocks;
+        };
+    }
+
+    // highlight matching words
+    function matchHighlight() {
+        tracker.activeBlocks.forEach(function(b) {
+            var blockDisplay = document.querySelector('.'+b.word);
+            var newDisplay = '<span>'+b.word+'</span>';
+            blockDisplay.innerHTML = newDisplay;
+        });
+        tracker.matchingBlocks.forEach(function(b) {
+            var blockDisplay = document.querySelector('.'+b.word);
+            var hString = current.join('');
+            var rString = b.word.split('').slice(current.length).join('');
+            var newDisplay = '<span class="highlight">'+hString+'</span>'+rString;
+            blockDisplay.innerHTML = newDisplay;
+        });
     }
 
     // on spacebar, if current matches an active word, delete from activeBlocks
@@ -51,6 +69,7 @@ var Keyboard = function(interactions, tracker) {
                     if (tracker.activeBlocks[i].word.toUpperCase() == word) {
                         tracker.activeBlocks[i].deleteBlock();
                         clear = true;
+                        tracker.increaseScore(settings);
                         tracker.activeBlocks.splice(i, 1);
                     }
                 }
@@ -61,7 +80,7 @@ var Keyboard = function(interactions, tracker) {
                     match.speed += 1;
                 });
         }
-        // clear keyboard 
+        // clear keyboard
         current = [];
         interactions.enter = false;
         }
@@ -85,6 +104,7 @@ var Keyboard = function(interactions, tracker) {
         deleteFromCurrent(interactions);
         quickDelete(interactions);
         matcher();
+        matchHighlight();
         submitWord();
         display();
     }
