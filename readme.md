@@ -1,7 +1,7 @@
 features to add:
 village building
-start game end game
-level up screen
+restart button
+level up screen and show level
 darkened pause screen
 sound effects
 

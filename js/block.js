@@ -2,16 +2,15 @@ var Block = function(settings, tracker) {
 
     var self = this;
     // randomised speed between 0.5 and 1.7
-    this.speed = Math.random() * (1.2-0.5) + 0.5;
+    this.speed = Math.random() * (settings.maxSpeed-settings.minSpeed) + settings.minSpeed;
     this.word = setWord();
     displayBlock(this.word);
-
 
     function setWord() {
         var listOfWords = getListOfWords();
         var avoidWords = tracker.getActiveWords();
         var wordsOfLength = listOfWords.filter(function(s) {
-            return (s.length === settings.level && avoidWords.indexOf(s) == -1);
+            return (s.length <= settings.level && avoidWords.indexOf(s) == -1);
         });
         return wordsOfLength[Math.floor(Math.random() * wordsOfLength.length)];
     }

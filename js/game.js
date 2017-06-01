@@ -3,6 +3,9 @@
     var settings = {};
     settings.level = 4;
     settings.maxActiveBlocks = 7;
+    settings.gameEnd = false;
+    settings.minSpeed = 0.5;
+    settings.maxSpeed = 1.2;
 
     /* Interactions */
     var interactions = {};
@@ -41,10 +44,14 @@
             if (event.target.id == 'pause') {
                 if (interactions.pause == false) {
                     interactions.pause = true;
+                    var display = document.querySelector('#title-card');
+                    display.innerHTML = 'Paused';
                     cancelRequestAnimFrame(request);
                 }
                 else if (interactions.pause == true) {
                     interactions.pause = false;
+                    var display = document.querySelector('#title-card');
+                    display.innerHTML = '';
                     loop();
                 }
             }
@@ -74,10 +81,14 @@
             if (event.keyCode == 27) {
                 if (interactions.pause == false) {
                     interactions.pause = true;
+                    var display = document.querySelector('#title-card');
+                    display.innerHTML = 'Paused';
                     cancelRequestAnimFrame(request);
                 }
                 else if (interactions.pause == true) {
                     interactions.pause = false;
+                    var display = document.querySelector('#title-card');
+                    display.innerHTML = '';
                     loop();
                 }
             }
@@ -106,16 +117,40 @@
     blocks are added to activeBlock array, which has a maximum cap
     of 10 blocks (10 blocks on screen max) */
     function spawnBlocks() {
-        var randomInterval = Math.random() * (2000 - 500) + 500;
+        if (settings.gameEnd == false) {
+            var randomInterval = Math.random() * (2000 - 1000) + 1000;
 
-        if (tracker.activeBlocks.length < settings.maxActiveBlocks && interactions.pause == false) {
-            tracker.addToActive(new Block(settings, tracker));
+            if (tracker.activeBlocks.length < settings.maxActiveBlocks && interactions.pause == false) {
+                tracker.addToActive(new Block(settings, tracker));
+            }
+            setTimeout(spawnBlocks, randomInterval);
         }
-        setTimeout(spawnBlocks, randomInterval);
     };
+
+    /* End Game Functionality */
+    function endGame() {
+        if (tracker.health == 0) {
+            if (settings.gameEnd == false) {
+                settings.gameEnd = true;
+                var game = document.querySelector('#game-container');
+                game.style.display= 'none';
+                var pause = document.querySelector('#pause');
+                pause.style.display = 'none';
+                var over = document.querySelector('#game-over');
+                over.style.display = 'block';
+                for (var i=1; i<19;i++) {
+                    var item = document.querySelector('.v'+ i);
+                    item.style.visibility = 'hidden';
+                    item.classList.remove('hatch');
+                }
+                cancelRequestAnimFrame(request);
+            }
+        }
+    }
 
     /* Render Function (called 60/s) */
     this.render = function() {
+        endGame();
         for (var i=0; i < assets.length; i++) {
         assets[i].render(interactions);
         }
@@ -152,13 +187,12 @@
         clearTimeout
     } )();
 
-    if (interactions.pause) {
-        console.log('hi')
-        cancelRequestAnimFrame(request);
-    }
-
     setDisplay();
     setEvents();
     spawnBlocks();
+    for (var i=1; i<19;i++) {
+        var item = document.querySelector('.v'+ i);
+        item.style.visibility = 'hidden';
+    }
 
 }

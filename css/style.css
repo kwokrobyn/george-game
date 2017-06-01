@@ -6,13 +6,33 @@ html {
   box-sizing: inherit;
 }
 
-body {
+#village {
+    opacity: 0.9;
+    margin-top: -400px;
+    height: 400px;
+    width: 570px;
+    position: relative;
+    z-index: 5;
 }
 
 .current {
     font-size: 60px;
     width: 100%;
     text-align: center;
+}
+
+#game-over {
+    width: 60%;
+    margin: 0 auto;
+    height: 700px;
+    display: none;
+}
+
+#game-container {
+    position: absolute;
+    margin-left: -288px;
+    left: 50%;
+    display: none;
 }
 
 #start-container {
@@ -114,7 +134,7 @@ body {
     top: 80px;
     left: 400px;
     font-size: 20px;
-    z-index: 3;
+    z-index: 10;
 }
 
 #store-img {
@@ -127,7 +147,7 @@ body {
 }
 
 .store-block {
-    width: 6.9px;
+    width: 9.2px;
     display: inline-block;
     height: 17px;
     background-color: #3D9970;
@@ -159,18 +179,14 @@ body {
     background-size: contain;
 }
 
-#game-container {
-    position: absolute;
-    margin-left: -288px;
-    left: 50%;
-    display: none;
-}
-
 #title-card {
     background-color: white;
+    text-align: center;
+    line-height: 100px;
+    font-size: 50px;
     height: 100px;
     position: relative;
-    z-index: 1;
+    z-index: 7;
 }
 
 #game-board {
@@ -191,6 +207,7 @@ body {
     text-align: left;
     line-height: 50px;
     font-size: 20px;
+    z-index: 6;
 }
 
 .block span {
@@ -204,4 +221,226 @@ body {
 .block span.highlight {
     margin-left: 32px;
     color: #3D9970;
+}
+
+.text {
+    position: absolute;
+    top: 20%;
+    display: inline-block;
+    font-size: 150px;
+}
+
+.text2 {
+    top: 50%;
+    position: absolute;
+    left: 47%;
+    font-size: 40px;
+    text-decoration: underline;
+}
+
+#game-over .img {
+    background-image: url('../images/deadgeorge.png');
+    transform: rotate(180deg);
+    display: inline-block;
+    height: 200px;
+    width: 180px;
+    background-size: contain;
+}
+
+.v1 {
+    background-image: url('../images/village/1.png');
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    top: 370px;
+    left: 540px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v2 {
+    background-image: url('../images/village/2.png');
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    top: 369px;
+    left: 515px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v3 {
+    background-image: url('../images/village/3.png');
+    background-size: contain;
+    height: 60px;
+    width: 130px;
+    top: 344px;
+    left: 60px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v4 {
+    background-image: url('../images/village/4.png');
+    background-size: contain;
+    height: 65px;
+    width: 40px;
+    top: 300px;
+    left: 400px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v5 {
+    background-image: url('../images/village/5.png');
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    top: 325px;
+    left: 440px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v6 {
+    background-image: url('../images/village/6.png');
+    background-size: contain;
+    height: 30px;
+    width: 40px;
+    top: 375px;
+    left: 190px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v7 {
+    background-image: url('../images/village/7.png');
+    background-size: contain;
+    height: 70px;
+    width: 70px;
+    top: 280px;
+    left: 455px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v8 {
+    background-image: url('../images/village/8.png');
+    background-size: contain;
+    height: 37px;
+    width: 40px;
+    top: 280px;
+    left: 355px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v9 {
+    background-image: url('../images/village/9.png');
+    background-size: contain;
+    height: 37px;
+    width: 35px;
+    top: 334px;
+    left: 455px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v10 {
+    background-image: url('../images/village/10.png');
+    background-size: contain;
+    height: 50px;
+    width: 55px;
+    top: 334px;
+    left: 255px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v11 {
+    background-image: url('../images/village/11.png');
+    background-size: contain;
+    height: 180px;
+    width: 320px;
+    top: 156px;
+    left: 55px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v12 {
+    background-image: url('../images/village/12.png');
+    background-size: contain;
+    height: 40px;
+    width: 40px;
+    top: 260px;
+    left: 430px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v13 {
+    background-image: url('../images/village/13.png');
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+    top: 200px;
+    left: 460px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v14 {
+    background-image: url('../images/village/14.png');
+    background-size: contain;
+    height: 36px;
+    width: 42px;
+    top: 300px;
+    left: 100px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v15 {
+    background-image: url('../images/village/15.png');
+    background-size: contain;
+    height: 36px;
+    width: 42px;
+    top: 320px;
+    left: 310px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v16 {
+    background-image: url('../images/village/16.png');
+    background-size: contain;
+    height: 40px;
+    width: 30px;
+    top: 215px;
+    left: 437px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v17 {
+    background-image: url('../images/village/17.png');
+    background-size: contain;
+    height: 100px;
+    width: 120px;
+    top: 70px;
+    left: 190px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.v18 {
+    background-image: url('../images/village/18.png');
+    background-size: contain;
+    height: 180px;
+    width: 320px;
+    top: 70px;
+    left: 230px;
+    position: absolute;
+    visibility: hidden;
 }

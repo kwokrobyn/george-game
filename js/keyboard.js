@@ -61,7 +61,7 @@ var Keyboard = function(interactions, tracker, settings) {
     function submitWord() {
         if (interactions.enter) {
             var clear = false;
-            if (tracker.matchingBlocks.length != 0 && tracker.matchingBlocks.length != tracker.activeBlocks.length) {
+            if (tracker.matchingBlocks.length != 0) {
                 // word to check
                 var word = current.join('').toUpperCase();
                 for (var i=0; i<tracker.activeBlocks.length;i++) {
@@ -75,25 +75,25 @@ var Keyboard = function(interactions, tracker, settings) {
                 }
             }
             // speeds up last matching blocks if no match is made
-            if (!clear) {
+            if (!clear && tracker.matchingBlocks.length != tracker.activeBlocks.length) {
                 tracker.lastMatches.forEach(function(match) {
                     match.speed += 1;
                 });
-        }
-        // clear keyboard
-        current = [];
-        interactions.enter = false;
+            }
+            // clear keyboard
+            current = [];
+            interactions.enter = false;
         }
     }
 
     // simple testing display for block spawning and submitWords
     function display() {
-        // var wordDisplay = document.querySelector('.words');
-        // var activeWords = [];
-        // for (var i=0;i<tracker.activeBlocks.length;i++) {
-        //     activeWords.push(tracker.activeBlocks[i].word);
-        // }
-        // wordDisplay.innerHTML = activeWords.join(', ');
+        var wordDisplay = document.querySelector('.words');
+        var activeWords = [];
+        for (var i=0;i<tracker.activeBlocks.length;i++) {
+            activeWords.push(tracker.activeBlocks[i].word);
+        }
+        wordDisplay.innerHTML = activeWords.join(', ');
 
         var keyBoardDisplay = document.querySelector('.current');
         keyBoardDisplay.innerHTML = current.join(' ');
