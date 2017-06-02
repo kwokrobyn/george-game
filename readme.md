@@ -1,15 +1,7 @@
-features to add:
-village building
-restart button
-level up screen and show level
-darkened pause screen
-sound effects
+George The Game
 
-bugs to fix:
+A simple browser typing game created with HTML, CSS and Javascript.
 
-words that spawn too close to each other block each other - fixed: random speeds
-if the same word spawns twice, only one will fall - fixed: no same word will spawn twice
+George is stranded on an island. Help him collect logs to build his village!
 
-60E384
-5AD47B
-52C271
+Type the words in the logs. SPACE to enter. Backspace to delete.
