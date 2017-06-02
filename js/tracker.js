@@ -4,7 +4,7 @@ var Tracker = function(settings) {
     this.activeBlocks = [];
     this.matchingBlocks = [];
     this.lastMatches = [];
-    this.health = 1;
+    this.health = 5;
     this.score = 0;
     this.villageCount = 1;
 
@@ -22,9 +22,23 @@ var Tracker = function(settings) {
         if (self.score + 1 == 15) {
             self.score = 0;
             settings.level += 1;
-            settings.minSpeed += 0.4;
-            settings.maxSpeed += 0.4;
-            this.health = 5;
+            settings.minSpeed += 0.3;
+            settings.maxSpeed += 0.3;
+            settings.maxActiveBlocks++;
+            var audio = document.getElementsByTagName("audio")[4];
+            if(audio.duration > 0 && !audio.paused){
+
+                //already playing
+                audio.pause();
+                audio.currentTime = 0;
+                audio.play();
+
+            }else{
+
+                //not playing
+                audio.play();
+
+            }
             var display = document.querySelector('#title-card');
             display.innerHTML = 'Level ' + (settings.level-3);
             setTimeout(function() {
@@ -32,9 +46,11 @@ var Tracker = function(settings) {
             }, 3000)
         }
         self.score += 1;
-        if (self.score % 3 === 0 && self.score > 1) {
+        if (self.score % 4 === 0 && self.score > 1 && self.villageCount < 19) {
             var item = document.querySelector('.v'+ self.villageCount);
             item.className += ' hatch';
+            var audio = document.getElementsByTagName("audio")[10];
+            s.playSound(audio);
             self.villageCount++;
         }
     }

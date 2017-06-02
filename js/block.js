@@ -10,7 +10,7 @@ var Block = function(settings, tracker) {
         var listOfWords = getListOfWords();
         var avoidWords = tracker.getActiveWords();
         var wordsOfLength = listOfWords.filter(function(s) {
-            return (s.length <= settings.level && avoidWords.indexOf(s) == -1);
+            return (s.length <= settings.level && avoidWords.indexOf(s) == -1 && s.length >= 4);
         });
         return wordsOfLength[Math.floor(Math.random() * wordsOfLength.length)];
     }
@@ -55,6 +55,8 @@ var Block = function(settings, tracker) {
     function death() {
         var block = document.querySelector('.'+self.word);
         if (parseFloat(block.style.top) >= 520) {
+            var audio = document.getElementsByTagName("audio")[1];
+            s.playSound(audio);
             self.deleteBlock();
 
             var blockIndex = getIndex();

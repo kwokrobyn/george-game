@@ -9,6 +9,25 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <audio><source src="sounds/clear.mp3"></audio>
+        <audio><source src="sounds/lose.mp3"></audio>
+        <audio><source src="sounds/key.wav"></audio>
+        <audio><source src="sounds/back.wav"></audio>
+        <audio><source src="sounds/levelup.mp3"></audio>
+        <audio><source src="sounds/death.mp3"></audio>
+        <audio><source src="sounds/opening.mp3"></audio>
+        <audio><source src="sounds/ingame.mp3"></audio>
+        <audio><source src="sounds/hover.wav"></audio>
+        <audio><source src="sounds/start.wav"></audio>
+        <audio><source src="sounds/build.wav"></audio>
+        <script>
+          var audio = document.getElementsByTagName("audio")[7];
+          audio.volume = 0.5;
+          var audio = document.getElementsByTagName("audio")[5];
+          audio.volume = 0.5;
+          var audio = document.getElementsByTagName("audio")[6];
+          audio.volume = 0.5;
+        </script>
         <div id="start-container">
             <div id="george-profile">
                 <div class="george-img animated bounceInLeft"></div>
@@ -17,6 +36,11 @@
                     <div class="the-game animated fadeInUp">The Game</div>
                 </div>
                 <div class="start-button animated bounceIn"></div>
+            </div>
+            <div id="instructions">
+                George is stranded on an island. Help him collect logs to build his village!
+                <br><br>
+                Type the words in the log. SPACE to enter. Backspace to delete.
             </div>
         </div>
 
@@ -62,7 +86,11 @@
             <div class="img animated floating"></div></div>
             <div class="text2">
             play again?</div>
+            <div class="text3">
+                George's village:
+            </div>
             <div class="restart"></div>
+            <div id="village-2"></div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

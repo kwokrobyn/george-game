@@ -6,6 +6,14 @@ html {
   box-sizing: inherit;
 }
 
+#village-2 {
+    position: absolute;
+    height: 330px;
+    width: 570px;
+    top: 330px;
+    left: 25%;
+}
+
 #village {
     opacity: 0.9;
     margin-top: -400px;
@@ -41,6 +49,16 @@ html {
     width: 50%;
     position: relative;
     display: block;
+}
+
+#instructions {
+    position: absolute;
+    top: 70%;
+    width: 60%;
+    height: 300px;
+    z-index: 4;
+    font-size: 30px;
+    visibility: hidden;
 }
 
 #george-profile {
@@ -225,17 +243,24 @@ html {
 
 .text {
     position: absolute;
-    top: 20%;
+    top: 5%;
     display: inline-block;
     font-size: 150px;
 }
 
 .text2 {
-    top: 50%;
+    top: 35%;
     position: absolute;
     left: 47%;
     font-size: 40px;
     text-decoration: underline;
+}
+
+.text3 {
+    top: 45%;
+    position: absolute;
+    left: 20%;
+    font-size: 30px;
 }
 
 #game-over .img {

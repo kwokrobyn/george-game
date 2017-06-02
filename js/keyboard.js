@@ -7,6 +7,8 @@ var Keyboard = function(interactions, tracker, settings) {
         if (interactions.alphabet !== "") {
             current.push(interactions.alphabet);
             interactions.alphabet = "";
+            var audio = document.getElementsByTagName("audio")[2];
+            s.playSound(audio);
             console.log(current);
         }
     }
@@ -16,6 +18,8 @@ var Keyboard = function(interactions, tracker, settings) {
         if (interactions.backspace) {
             current.pop();
             interactions.backspace = false;
+            var audio = document.getElementsByTagName("audio")[3];
+            s.playSound(audio);
             console.log(current);
         }
     }
@@ -67,6 +71,8 @@ var Keyboard = function(interactions, tracker, settings) {
                 for (var i=0; i<tracker.activeBlocks.length;i++) {
                     // clear successful, exact word found
                     if (tracker.activeBlocks[i].word.toUpperCase() == word) {
+                        var audio = document.getElementsByTagName("audio")[0];
+                        s.playSound(audio);
                         tracker.activeBlocks[i].deleteBlock();
                         clear = true;
                         tracker.increaseScore(settings);
@@ -88,12 +94,12 @@ var Keyboard = function(interactions, tracker, settings) {
 
     // simple testing display for block spawning and submitWords
     function display() {
-        var wordDisplay = document.querySelector('.words');
-        var activeWords = [];
-        for (var i=0;i<tracker.activeBlocks.length;i++) {
-            activeWords.push(tracker.activeBlocks[i].word);
-        }
-        wordDisplay.innerHTML = activeWords.join(', ');
+        // var wordDisplay = document.querySelector('.words');
+        // var activeWords = [];
+        // for (var i=0;i<tracker.activeBlocks.length;i++) {
+        //     activeWords.push(tracker.activeBlocks[i].word);
+        // }
+        // wordDisplay.innerHTML = activeWords.join(', ');
 
         var keyBoardDisplay = document.querySelector('.current');
         keyBoardDisplay.innerHTML = current.join(' ');

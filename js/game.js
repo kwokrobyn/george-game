@@ -1,8 +1,8 @@
- var Game = function() {
+ var Game = function(start) {
     /* Game Settings */
     var settings = {};
     settings.level = 4;
-    settings.maxActiveBlocks = 7;
+    settings.maxActiveBlocks = 5;
     settings.gameEnd = false;
     settings.minSpeed = 0.5;
     settings.maxSpeed = 1.2;
@@ -46,10 +46,14 @@
                     interactions.pause = true;
                     var display = document.querySelector('#title-card');
                     display.innerHTML = 'Paused';
+                    var audio = document.getElementsByTagName("audio")[7];
+                    audio.pause();
                     cancelRequestAnimFrame(request);
                 }
                 else if (interactions.pause == true) {
                     interactions.pause = false;
+                    var audio = document.getElementsByTagName("audio")[7];
+                    audio.play();
                     var display = document.querySelector('#title-card');
                     display.innerHTML = '';
                     loop();
@@ -83,10 +87,14 @@
                     interactions.pause = true;
                     var display = document.querySelector('#title-card');
                     display.innerHTML = 'Paused';
+                    var audio = document.getElementsByTagName("audio")[7];
+                    audio.pause();
                     cancelRequestAnimFrame(request);
                 }
                 else if (interactions.pause == true) {
                     interactions.pause = false;
+                    var audio = document.getElementsByTagName("audio")[7];
+                    audio.play();
                     var display = document.querySelector('#title-card');
                     display.innerHTML = '';
                     loop();
@@ -118,7 +126,7 @@
     of 10 blocks (10 blocks on screen max) */
     function spawnBlocks() {
         if (settings.gameEnd == false) {
-            var randomInterval = Math.random() * (2000 - 1000) + 1000;
+            var randomInterval = Math.random() * (2000 - 500) + 500;
 
             if (tracker.activeBlocks.length < settings.maxActiveBlocks && interactions.pause == false) {
                 tracker.addToActive(new Block(settings, tracker));
@@ -131,6 +139,11 @@
     function endGame() {
         if (tracker.health == 0) {
             if (settings.gameEnd == false) {
+                var audio = document.getElementsByTagName("audio")[7];
+                audio.pause();
+                audio.currentTime = 0;
+                var audio = document.getElementsByTagName("audio")[5];
+                s.playSound(audio);
                 settings.gameEnd = true;
                 var game = document.querySelector('#game-container');
                 game.style.display= 'none';
@@ -138,11 +151,8 @@
                 pause.style.display = 'none';
                 var over = document.querySelector('#game-over');
                 over.style.display = 'block';
-                for (var i=1; i<19;i++) {
-                    var item = document.querySelector('.v'+ i);
-                    item.style.visibility = 'hidden';
-                    item.classList.remove('hatch');
-                }
+                var village2 = document.querySelector('#village-2');
+                village2.innerHTML = village.innerHTML;
                 cancelRequestAnimFrame(request);
             }
         }
